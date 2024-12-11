@@ -24,7 +24,7 @@ class PrincipledBJSNode(AbstractBJSNode):
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         subsurface = self.getDefault('Subsurface')
         # ignoring texture surfaces & must be greater than 0
-        if (subsurface > 0):
+        if (subsurface is not None and subsurface > 0):
             input = self.getDefault('Subsurface Color')
             tintColor = Color((input[0], input[1], input[2]))
             self.subSurfaceTintColor = tintColor

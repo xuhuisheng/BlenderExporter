@@ -214,17 +214,17 @@ class AbstractBJSNode:
 #     Methods for finding inputs to this node
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getDefault(self, socketName):
-        return self.defaults[socketName]
+        return self.defaults.get(socketName)
 
     # leave out bpyType when value can either be a default value or another node
     def findInput(self, socketName, bpyTypeReqd = None):
-        value = self.bjsSubNodes[socketName]
+        value = self.bjsSubNodes.get(socketName)
         if bpyTypeReqd is not None:
             if not hasattr(value, 'bpyType') or value.bpyType != bpyTypeReqd:
                 return None
             
         if value is not None: return value
-        return self.defaults[socketName]
+        return self.defaults.get(socketName)
 
     # called by many sub-classes, when just a color, return the default value to caller
     def findTexture(self, input, textureType):
